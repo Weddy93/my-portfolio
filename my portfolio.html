@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Weddy Nkatha | Software Engineer & AI Specialist</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* header & navigation */
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e293b;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2563eb;
+            color: #2563eb;
+        }
+
+        .btn-outline:hover {
+            background: #eff6ff;
+        }
+
+        /* hero section */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            padding: 4rem 0 3rem 0;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .hero-highlight {
+            color: #2563eb;
+            background: linear-gradient(120deg, #dbeafe 0%, #dbeafe 40%, transparent 60%);
+            padding: 0 0.2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #334155;
+            max-width: 550px;
+            margin: 1rem 0 1.8rem;
+        }
+
+        .contact-info-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .contact-info-hero i {
+            width: 24px;
+            color: #2563eb;
+        }
+
+        .hero-image {
+            flex: 0.8;
+            text-align: center;
+        }
+
+        .avatar {
+            background: linear-gradient(145deg, #eef2ff, #ffffff);
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            border: 4px solid white;
+        }
+
+        .avatar i {
+            font-size: 7rem;
+            color: #2563eb;
+        }
+
+        /* section styling */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        /* skills & tools grid */
+        .skills-grid, .tools-grid, .cert-grid, .soft-skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .skill-tag, .tool-tag, .cert-tag, .soft-tag {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+        .skill-tag:hover, .tool-tag:hover, .cert-tag:hover, .soft-tag:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            background: #f8fafc;
+        }
+
+        /* education & experience cards */
+        .education-card, .cert-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eef2ff;
+            transition: all 0.2s;
+        }
+        .education-card h3, .cert-card h3 {
+            font-size: 1.2rem;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+        }
+        .education-date {
+            color: #3b82f6;
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .project-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.3s;
+            box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2ff;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12);
+        }
+        .card-img {
+            height: 150px;
+            background: linear-gradient(145deg, #e0e7ff, #cbd5e1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: #1e3a8a;
+        }
+        .card-content {
+            padding: 1.4rem;
+        }
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+        }
+        .project-tech span {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* quote section */
+        .quote-box {
+            background: linear-gradient(135deg, #f1f5f9, #ffffff);
+            padding: 2rem;
+            border-radius: 32px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.25rem;
+            border-left: 6px solid #3b82f6;
+        }
+
+        /* contact form */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: space-between;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-form {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #eef2ff;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+        #form-feedback {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #475569;
+        }
+        .social-links a {
+            color: #475569;
+            margin: 0 0.8rem;
+            font-size: 1.3rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: #2563eb;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .section-title {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">WEDDY NKATHA</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Let's Connect</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section with Resume Details -->
+    <section id="home">
+        <div class="container hero">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fas fa-brain"></i> AI & LLM Specialist | Software Engineer</span>
+                <h1>Weddy Nkatha <span class="hero-highlight">Building Intelligent Systems</span> & Scalable Solutions</h1>
+                <p>Innovative Software Engineer specializing in AI training, LLM evaluation, prompt engineering, and quality assurance. Combining software engineering principles with data science and cloud computing.</p>
+                <div class="contact-info-hero">
+                    <div><i class="fas fa-phone-alt"></i> +254 746 728 328 / +254 115 842 214</div>
+                    <div><i class="fas fa-envelope"></i> gikundaweddy1@gmail.com</div>
+                    <div><i class="fab fa-linkedin"></i> linkedin.com/in/weddy-nkatha</div>
+                    <div><i class="fab fa-github"></i> github.com/weddy93</div>
+                </div>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#projects" class="btn btn-primary">View Projects <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-outline">Hire Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="avatar">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section from Updated CV -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education & Certifications</h2>
+            <div class="education-card">
+                <h3>Bachelor of Science in Software Engineering</h3>
+                <div class="education-date">Kirinyaga University | 2024 - 2028</div>
+                <p>Comprehensive software engineering degree with focus on AI, data structures, algorithms, calculus, linear algebra, discrete maths, and system analysis and design.</p>
+            </div>
+            <div class="education-card">
+                <h3>Certified AI and Machine Learning Expert</h3>
+                <div class="education-date">Power Learn Project Africa | July - November 2025</div>
+                <p>Advanced certification in AI/ML methodologies, LLM fine-tuning, AI agent testing, and machine learning.</p>
+            </div>
+            <div class="education-card">
+                <h3>AWS Cloud Infrastructure</h3>
+                <div class="education-date">ICT Kenya | December 2025</div>
+                <p>Certification in AWS cloud services, infrastructure deployment, and cloud-native solutions.</p>
+            </div>
+            <div class="education-card">
+                <h3>Data Analytics and Artificial Intelligence</h3>
+                <div class="education-date">ICT Kenya | March 2026</div>
+                <p>Specialized certification in data analytics, Power BI, and advanced AI concepts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Skills from Updated CV -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">AI & LLM Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Prompt Engineering</span>
+                <span class="skill-tag">LLM Fine-tuning</span>
+                <span class="skill-tag">AI Agent Testing</span>
+                <span class="skill-tag">Evaluation Metrics (Precision, Recall, Coverage)</span>
+                <span class="skill-tag">AI-Generated Content Analysis</span>
+                <span class="skill-tag">RAG Systems</span>
+                <span class="skill-tag">Machine Learning</span>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 2rem;">Programming Languages</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 2rem;">Frameworks, Libraries & Tools</h2>
+            <div class="tools-grid">
+                <span class="tool-tag">PyTorch</span>
+                <span class="tool-tag">TensorFlow</span>
+                <span class="tool-tag">scikit-learn</span>
+                <span class="tool-tag">Seaborn</span>
+                <span class="tool-tag">Flask</span>
+                <span class="tool-tag">Pandas / NumPy</span>
+                <span class="tool-tag">Matplotlib</span>
+                <span class="tool-tag">FastAPI</span>
+                <span class="tool-tag">Pytest</span>
+                <span class="tool-tag">Selenium</span>
+                <span class="tool-tag">Testim.io</span>
+                <span class="tool-tag">Git</span>
+                <span class="tool-tag">Canva</span>
+                <span class="tool-tag">React</span>
+                <span class="tool-tag">AWS</span>
+                <span class="tool-tag">Power BI</span>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 2rem;">Methodologies & Core Competencies</h2>
+            <div class="tools-grid">
+                <span class="tool-tag">Data Structures & Algorithms</span>
+                <span class="tool-tag">Logical Reasoning</span>
+                <span class="tool-tag">Statistical Analysis</span>
+                <span class="tool-tag">Agile/Scrum</span>
+                <span class="tool-tag">Discrete Maths</span>
+                <span class="tool-tag">Linear Algebra</span>
+                <span class="tool-tag">Calculus</span>
+                <span class="tool-tag">System Analysis & Design</span>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 2rem;">Soft Skills</h2>
+            <div class="soft-skills-grid">
+                <span class="soft-tag">Collaborative Teamwork</span>
+                <span class="soft-tag">Creative Problem-Solving</span>
+                <span class="soft-tag">Approachable Demeanor</span>
+                <span class="soft-tag">Time Management</span>
+                <span class="soft-tag">Precision in Work</span>
+                <span class="soft-tag">Reliable Team Member</span>
+                <span class="soft-tag">Critical Thinking</span>
+                <span class="soft-tag">Comprehensive Computer Competence</span>
+                <span class="soft-tag">Analytical Decision-Making</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects (Personalized from CV expertise) -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Dev Quote Section -->
+    <section>
+        <div class="container">
+            <div class="quote-box" id="quoteBox">
+                <i class="fas fa-quote-left" style="color:#94a3b8; margin-right: 10px;"></i> 
+                "Code. Learn. Build. Repeat." — Weddy Nkatha
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container contact-flex">
+            <div class="contact-info">
+                <h2 class="section-title" style="margin-top:0">Let's Connect</h2>
+                <p style="margin: 1rem 0 1.5rem;">I'm always open to discussing AI projects, software engineering roles, research collaborations, or innovative ideas. Let's build something impactful together.</p>
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div><i class="fas fa-phone-alt" style="width: 30px; color:#2563eb;"></i> +254 746 728 328 / +254 115 842 214</div>
+                    <div><i class="fas fa-envelope" style="width: 30px; color:#2563eb;"></i> gikundaweddy1@gmail.com</div>
+                    <div><i class="fab fa-linkedin" style="width: 30px; color:#2563eb;"></i> linkedin.com/in/weddy-nkatha</div>
+                    <div><i class="fab fa-github" style="width: 30px; color:#2563eb;"></i> github.com/weddy93</div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send a message</h3>
+                <form id="contactForm">
+                    <div class="form-group"><input type="text" id="name" placeholder="Your name" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Email address" required></div>
+                    <div class="form-group"><textarea rows="3" id="message" placeholder="Tell me about your project, collaboration idea, or opportunity..." required></textarea></div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Send Message <i class="fas fa-paper-plane"></i></button>
+                    <div id="form-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="social-links">
+        <a href="https://github.com/weddy93" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/weddy-nkatha-a84740358" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="margin-top: 1.2rem;">© 2025 Weddy Nkatha — Software Engineer | AI Specialist | Code. Learn. Build. Repeat.</p>
+</footer>
+
+<script>
+    // Projects based on updated CV expertise (AI, LLM, Cloud, Data Analytics, Full-stack)
+    const projectsData = [
+        { title: "LLM Evaluation Suite", desc: "Comprehensive testing framework for LLM performance using precision, recall, and coverage metrics with RAG validation.", tech: ["Python", "PyTorch", "RAG", "FastAPI"], icon: "fas fa-robot" },
+        { title: "Predictive Healthcare Analytics", desc: "Machine learning model predicting disease outbreaks using epidemiological data and statistical analysis.", tech: ["Scikit-learn", "Pandas", "Flask", "Matplotlib"], icon: "fas fa-chart-line" },
+        { title: "AI Content Analysis Tool", desc: "NLP-based system for AI-generated content evaluation and quality assurance with visual analytics.", tech: ["Transformers", "Hugging Face", "Seaborn", "Power BI"], icon: "fas fa-comment-dots" },
+        { title: "Cloud Task Manager", desc: "Scalable serverless task management system with AWS infrastructure and real-time sync.", tech: ["AWS Lambda", "DynamoDB", "React", "Docker"], icon: "fas fa-cloud-upload-alt" },
+        { title: "E-Commerce Platform", desc: "Full-stack platform with cart, authentication, payment integration, and real-time inventory.", tech: ["React", "Node.js", "MongoDB", "Tailwind"], icon: "fas fa-shopping-cart" },
+        { title: "Automated Testing Suite", desc: "AI-assisted testing framework using Selenium, Pytest, and Testim.io for web applications.", tech: ["Selenium", "Pytest", "Testim.io", "Python"], icon: "fas fa-vial" },
+        { title: "Data Analytics Dashboard", desc: "Interactive Power BI dashboard for business intelligence and data-driven decision making.", tech: ["Power BI", "SQL", "Python", "Pandas"], icon: "fas fa-chart-pie" }
+    ];
+
+    function renderProjects() {
+        const grid = document.getElementById('projectsGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        projectsData.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="card-img"><i class="${proj.icon}" style="font-size: 2.8rem;"></i></div>
+                <div class="card-content">
+                    <h3>${proj.title}</h3>
+                    <p>${proj.desc}</p>
+                    <div class="project-tech">
+                        ${proj.tech.map(t => `<span>${t}</span>`).join('')}
+                    </div>
+                    <div style="margin-top: 12px;"><a href="#" style="color:#2563eb; font-weight: 500;">Learn more →</a></div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+    renderProjects();
+
+    // Dynamic quotes
+    const quotes = [
+        "Code. Learn. Build. Repeat. — Weddy Nkatha",
+        "Precision in AI evaluation leads to impactful solutions. — Weddy Nkatha",
+        "Data structures and algorithms are the poetry of logic. — Weddy Nkatha",
+        "Bridging software engineering with AI to solve real-world problems.",
+        "Innovation thrives at the intersection of discipline and creativity.",
+        "Quality assurance is not just a phase, it's a mindset."
+    ];
+    const quoteBox = document.getElementById('quoteBox');
+    if(quoteBox) {
+        let idx = 1;
+        setInterval(() => {
+            quoteBox.innerHTML = `<i class="fas fa-quote-left" style="color:#94a3b8; margin-right: 10px;"></i> ${quotes[idx % quotes.length]}`;
+            idx++;
+        }, 5000);
+    }
+
+    // Contact form handler
+    const contactForm = document.getElementById('contactForm');
+    const feedbackDiv = document.getElementById('form-feedback');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (!name || !email || !message) {
+                feedbackDiv.innerHTML = '<span style="color:#dc2626;">Please fill all fields.</span>';
+                return;
+            }
+            if (!email.includes('@')) {
+                feedbackDiv.innerHTML = '<span style="color:#dc2626;">Enter a valid email.</span>';
+                return;
+            }
+            feedbackDiv.innerHTML = '<span style="color:#10b981;">Thanks for reaching out! I will get back to you soon.</span>';
+            contactForm.reset();
+            setTimeout(() => { if(feedbackDiv) feedbackDiv.innerHTML = ''; }, 3000);
+        });
+    }
+
+    // Smooth scroll reveal
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(18px)';
+        section.style.transition = 'opacity 0.55s ease, transform 0.45s ease';
+        observer.observe(section);
+    });
+    const heroSection = document.querySelector('#home');
+    if(heroSection) { heroSection.style.opacity = '1'; heroSection.style.transform = 'translateY(0)'; }
+</script>
+</body>
+</html>
