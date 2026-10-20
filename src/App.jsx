@@ -1,608 +1,323 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
+  ArrowDownRight,
   ArrowRight,
-  Bot,
   BrainCircuit,
-  BriefcaseBusiness,
+  Check,
   Code2,
-  Database,
   ExternalLink,
-  Globe,
   Mail,
-  MapPin,
+  Menu,
   MessageCircle,
-  Phone,
-  Quote,
-  Sparkles,
+  X,
 } from 'lucide-react'
 
 const profile = {
   name: 'Weddy Nkatha',
-  title: 'Software Engineer | Data Scientist | AI Enthusiast',
-  summary:
-    'I build scalable software, data-driven products, and AI-powered experiences that turn complex ideas into practical solutions.',
   email: 'gikundaweddy1@gmail.com',
-  phone: '+254 115 842 214, +254746728328',
+  github: 'https://github.com/Weddy93',
   whatsapp: 'https://wa.me/254746728328',
   location: 'Kenya',
-  linkedin: 'https://www.linkedin.com/in/weddy-nkatha-a84740358',
-  github: 'https://github.com/Weddy93',
-  avatar: 'https://github.com/Weddy93.png',
 }
 
-const skills = {
-  'AI & LLM Skills': [
-    'Prompt Engineering',
-    'LLM Evaluation',
-    'AI Agent Testing',
-    'RAG Systems',
-    'Machine Learning',
-    'NLP & Content Analysis',
-  ],
-  'Programming Languages': ['Python', 'SQL', 'JavaScript', 'Java', 'HTML', 'CSS'],
-  'Frameworks & Tools': [
-    'React',
-    'FastAPI',
-    'Flask',
-    'PyTorch',
-    'TensorFlow',
-    'scikit-learn',
-    'Pandas',
-    'NumPy',
-    'Power BI',
-    'AWS',
-    'Git',
-    'Selenium',
-  ],
-  'Core Competencies': [
-    'Data Structures & Algorithms',
-    'System Analysis & Design',
-    'Agile & Scrum',
-    'Logical Reasoning',
-    'Statistical Analysis',
-    'Linear Algebra',
-    'Discrete Maths',
-    'Critical Thinking',
-  ],
-  'Soft Skills': [
-    'Collaborative Teamwork',
-    'Creative Problem-Solving',
-    'Time Management',
-    'Reliability',
-    'Analytical Decision-Making',
-    'Precision in Work',
-  ],
-}
-
-const education = [
+const projects = [
   {
-    title: 'Bachelor of Science in Software Engineering',
-    meta: 'Kirinyaga University • 2024 - 2028',
+    number: '01',
+    title: 'Health Check',
+    category: 'Machine learning · Web application',
     description:
-      'Focused on software engineering, AI, algorithms, system design, calculus, linear algebra, and data-driven problem solving.',
+      'A nutritional assessment application that uses machine learning to turn user-provided information into practical health-related insights.',
+    stack: ['React', 'Flask', 'Python', 'scikit-learn'],
+    href: 'https://github.com/Weddy93/health-check',
+    status: 'Available on GitHub',
+    featured: true,
   },
   {
-    title: 'Certified AI & Machine Learning Expert',
-    meta: 'Power Learn Project Africa • Jul - Nov 2025',
+    number: '02',
+    title: 'Used Car Price Prediction',
+    category: 'Applied machine learning · Regression',
     description:
-      'Hands-on training in AI/ML workflows, ML deployment, model reasoning, and AI agent evaluation.',
+      'A regression project exploring how vehicle make and model, age, mileage, fuel type, transmission, and ownership relate to used-car selling prices.',
+    stack: ['Python', 'pandas', 'scikit-learn', 'Random Forest'],
+    href: 'https://github.com/Weddy93?tab=repositories',
+    status: 'View GitHub repositories',
+    featured: true,
+  },
+  {
+    number: '03',
+    title: 'Healthy Beans',
+    category: 'Computer vision · In progress',
+    description:
+      'An image-classification experiment for distinguishing healthy bean leaves from selected disease categories using a PyTorch convolutional neural network.',
+    stack: ['Python', 'PyTorch', 'CNN', 'Computer vision'],
+    href: 'https://github.com/Weddy93?tab=repositories',
+    status: 'Experiment in progress',
+    featured: false,
+  },
+]
+
+const skillGroups = [
+  {
+    title: 'Programming & data',
+    skills: ['Python', 'SQL', 'JavaScript', 'pandas', 'NumPy', 'Power BI'],
+  },
+  {
+    title: 'AI & machine learning',
+    skills: ['scikit-learn', 'PyTorch', 'Model evaluation', 'Regression', 'Computer vision', 'Prompt engineering'],
+  },
+  {
+    title: 'Software & tools',
+    skills: ['React', 'Flask', 'FastAPI', 'Git & GitHub', 'REST APIs', 'AWS fundamentals'],
+  },
+]
+
+const learning = [
+  {
+    title: 'BSc Software Engineering',
+    place: 'Kirinyaga University',
+    detail: 'Currently pursuing a degree with a focus on software development, algorithms, databases, and system design.',
+  },
+  {
+    title: 'AI & Machine Learning',
+    place: 'Power Learn Project Africa',
+    detail: 'Practical learning in AI/ML workflows and applied machine learning.',
   },
   {
     title: 'AWS Cloud Infrastructure',
-    meta: 'ICT Kenya • Dec 2025',
-    description:
-      'Built foundational skills in cloud-native infrastructure, deployment, and scalable application architecture.',
+    place: 'ICT Kenya',
+    detail: 'Foundational cloud infrastructure and deployment concepts.',
   },
   {
     title: 'Data Analytics & Artificial Intelligence',
-    meta: 'ICT Kenya • Mar 2026',
-    description:
-      'Strengthened capabilities in analytics, BI reporting, and applied AI experience design using real-world data.',
+    place: 'ICT Kenya',
+    detail: 'Training in analytics, reporting, and applied AI.',
   },
-]
-
-const projectsData = [
-  {
-    title: 'health-check',
-    desc: 'A practical monitoring and diagnostic platform for service health tracking, reliability checks, and operational visibility.',
-    tech: ['React', 'Node.js', 'Monitoring', 'DevOps'],
-    accent: 'from-cyan-500 to-blue-500',
-    link: 'https://github.com/Weddy93/health-check',
-  },
-  {
-    title: 'AI-future-directions',
-    desc: 'A forward-looking AI exploration project focused on emerging trends, ideas, and systems shaping the future of intelligence.',
-    tech: ['AI', 'Research', 'Strategy', 'Python'],
-    accent: 'from-violet-500 to-indigo-500',
-    link: 'https://github.com/Weddy93/AI-future-directions',
-  },
-  {
-    title: 'Healthycoffee',
-    desc: 'A product concept blending wellness, digital experience, and branded commerce into a health-focused coffee offering.',
-    tech: ['UX', 'Branding', 'Web', 'Commerce'],
-    accent: 'from-amber-500 to-orange-500',
-    link: 'https://github.com/Weddy93/Healthycoffee',
-  },
-  {
-    title: 'Justice-Hub',
-    desc: 'A civic-tech concept built to improve access to justice, information, and public services through digital channels.',
-    tech: ['JavaScript', 'Full Stack', 'UI/UX', 'Social Impact'],
-    accent: 'from-emerald-500 to-teal-500',
-    link: 'https://github.com/Weddy93/Justice-Hub',
-  },
-  {
-    title: 'Shopsphere',
-    desc: 'An e-commerce experience showcasing digital storefront design, catalog organization, and smooth customer flows.',
-    tech: ['React', 'Commerce', 'Frontend', 'Design'],
-    accent: 'from-pink-500 to-rose-500',
-    link: 'https://github.com/Weddy93/Shopsphere',
-  },
-  {
-    title: 'Slauson-Cafe',
-    desc: 'A hospitality or cafe concept site focused on menu presentation, brand atmosphere, and customer engagement.',
-    tech: ['Web Design', 'Branding', 'Frontend', 'Marketing'],
-    accent: 'from-fuchsia-500 to-purple-500',
-    link: 'https://github.com/Weddy93/Slauson-Cafe',
-  },
-]
-
-const quotes = [
-  'Code. Learn. Build. Repeat. — Weddy Nkatha',
-  'Precision in AI evaluation leads to real-world impact.',
-  'Data structures and algorithms are the architecture of logical thinking.',
-  'The best products bridge engineering discipline with human-centered design.',
-]
-
-const initialForm = {
-  name: '',
-  email: '',
-  message: '',
-}
-
-const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
-]
-
-const socialLinks = [
-  { href: profile.github, label: 'GitHub', icon: Globe },
-  { href: profile.linkedin, label: 'LinkedIn', icon: Globe },
-  { href: `mailto:${profile.email}`, label: 'Email', icon: Mail },
-  { href: profile.whatsapp, label: 'WhatsApp', icon: MessageCircle },
 ]
 
 function App() {
-  const [quoteIndex, setQuoteIndex] = useState(0)
-  const [formData, setFormData] = useState(initialForm)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [feedback, setFeedback] = useState('')
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuoteIndex((prev) => (prev + 1) % quotes.length)
-    }, 5000)
+  const navItems = [
+    ['About', '#about'],
+    ['Projects', '#projects'],
+    ['Skills', '#skills'],
+    ['Learning', '#learning'],
+    ['Contact', '#contact'],
+  ]
 
-    return () => clearInterval(interval)
-  }, [])
-
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (event) => {
+  function submitMessage(event) {
     event.preventDefault()
+    const name = form.name.trim()
+    const email = form.email.trim()
+    const message = form.message.trim()
 
-    const { name, email, message } = formData
-
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setFeedback('Please fill in all fields before sending your message.')
-      return
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailPattern.test(email)) {
-      setFeedback('Please enter a valid email address.')
+    if (!name || !email || !message) {
+      setFeedback('Please complete all three fields.')
       return
     }
 
     const subject = encodeURIComponent(`Portfolio inquiry from ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    )
-
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+    setFeedback('Your email application should open with your message ready. You will still need to send it there.')
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-    setFeedback('Thanks for reaching out! Your email app should open with the message ready to send.')
-    setFormData(initialForm)
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
-        <div className="section-shell flex items-center justify-between py-4">
-          <a href="#home" className="text-lg font-black tracking-[0.2em] text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text">
-            WEDDY
+    <div className="site-shell">
+      <header className="site-header">
+        <a className="wordmark" href="#home" aria-label="Weddy home">WN<span>.</span></a>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+        <nav className={`navigation ${menuOpen ? 'navigation-open' : ''}`} aria-label="Main navigation">
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+          ))}
+          <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>
+            Get in touch <ArrowRight size={15} />
           </a>
-
-          <nav className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="text-sm font-medium text-slate-300 transition hover:text-white">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 hover:bg-blue-400"
-          >
-            Let&apos;s Connect
-            <ArrowRight size={16} />
-          </a>
-        </div>
+        </nav>
       </header>
 
       <main>
-        <section id="home" className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.25),transparent_28%)]" />
-          <div className="section-shell relative py-20 lg:py-28">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]"
-            >
-              <div>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-200">
-                  <BrainCircuit size={16} />
-                  AI &amp; LLM Specialist • Software Engineer
-                </div>
+        <section className="hero section-wrap" id="home">
+          <motion.div
+            className="hero-copy"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <p className="eyebrow"><span className="status-dot" /> {profile.location} · Software Engineering</p>
+            <h1>I build useful software and explore <span>intelligent solutions.</span></h1>
+            <p className="hero-description">
+              I’m {profile.name}, a Software Engineering student interested in AI, machine learning, and data-driven products. I enjoy turning a problem into something people can actually use.
+            </p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="#projects">Explore my work <ArrowRight size={17} /></a>
+              <a className="text-link" href="#about">A little about me <ArrowDownRight size={17} /></a>
+            </div>
+            <div className="hero-socials">
+              <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
+              <a href={`mailto:${profile.email}`}><Mail size={17} /> Email</a>
+              <a href={profile.whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17} /> WhatsApp</a>
+            </div>
+          </motion.div>
 
-                <h1 className="max-w-2xl text-4xl font-black tracking-tight text-white md:text-6xl">
-                  Building intelligent systems
-                  <span className="block text-blue-400">and scalable digital products.</span>
-                </h1>
-
-                <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-                  {profile.summary}
-                </p>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-300">
-                  <div className="inline-flex items-center gap-2">
-                    <Phone size={16} className="text-blue-400" />
-                    <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} className="hover:text-white">{profile.phone}</a>
-                  </div>
-                  <div className="inline-flex items-center gap-2">
-                    <Mail size={16} className="text-blue-400" />
-                    <a href={`mailto:${profile.email}`} className="hover:text-white">{profile.email}</a>
-                  </div>
-                </div>
-
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <a href="#projects" className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 hover:bg-blue-400">
-                    View Projects <ArrowRight size={18} />
-                  </a>
-                  <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/60 px-5 py-3 font-semibold text-slate-100 transition hover:border-blue-400 hover:text-blue-200">
-                    Hire Me
-                  </a>
-                </div>
+          <motion.div
+            className="hero-art"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.65, delay: 0.12 }}
+            aria-label="Decorative code illustration"
+          >
+            <div className="art-orbit orbit-one" />
+            <div className="art-orbit orbit-two" />
+            <div className="art-card">
+              <div className="art-card-top"><span>BUILD / LEARN / ITERATE</span><span className="art-live">● ACTIVE</span></div>
+              <div className="code-window">
+                <div className="code-dots"><i /><i /><i /></div>
+                <p><span className="code-muted">01</span> <span className="code-purple">const</span> focus = [</p>
+                <p><span className="code-muted">02</span> &nbsp; <span className="code-green">'software'</span>,</p>
+                <p><span className="code-muted">03</span> &nbsp; <span className="code-green">'machine learning'</span>,</p>
+                <p><span className="code-muted">04</span> &nbsp; <span className="code-green">'data'</span></p>
+                <p><span className="code-muted">05</span> ]</p>
+                <div className="code-divider" />
+                <p><span className="code-muted">06</span> <span className="code-purple">while</span> (curious) {'{'}</p>
+                <p><span className="code-muted">07</span> &nbsp; buildSomethingUseful()</p>
+                <p><span className="code-muted">08</span> {'}'}</p>
               </div>
+              <div className="art-card-bottom"><BrainCircuit size={19} /><span>Curiosity, applied.</span><span className="art-arrow">↗</span></div>
+            </div>
+            <div className="floating-note note-top"><Code2 size={17} /><span>Engineering mindset</span></div>
+            <div className="floating-note note-bottom"><BrainCircuit size={17} /><span>AI + practical impact</span></div>
+          </motion.div>
+        </section>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-                className="relative mx-auto w-full max-w-md"
-              >
-                <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-blue-500/30 via-sky-500/20 to-violet-500/30 blur-3xl" />
-                <div className="glass-panel relative overflow-hidden rounded-[2rem] p-5">
-                  <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-900/90">
-                    <img src={profile.avatar} alt={profile.name} className="h-[430px] w-full object-cover" />
-                  </div>
+        <div className="ticker" aria-label="Areas of interest">
+          <div className="ticker-track">
+            {['Software development', 'Machine learning', 'Data analytics', 'AI evaluation', 'Problem solving', 'Software development', 'Machine learning', 'Data analytics'].map((item, index) => (
+              <span key={`${item}-${index}`}>{item}<b>✳</b></span>
+            ))}
+          </div>
+        </div>
 
-                  <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-                      <Code2 className="mb-2 text-blue-400" size={18} />
-                      <div className="text-xl font-bold text-white">5+</div>
-                      <div className="text-xs text-slate-400">Years building</div>
-                    </div>
-                    <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-                      <Bot className="mb-2 text-cyan-400" size={18} />
-                      <div className="text-xl font-bold text-white">AI</div>
-                      <div className="text-xs text-slate-400">Driven products</div>
-                    </div>
-                    <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-                      <Database className="mb-2 text-violet-400" size={18} />
-                      <div className="text-xl font-bold text-white">Data</div>
-                      <div className="text-xs text-slate-400">Informed decisions</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
+        <section className="section-wrap section-block about-section" id="about">
+          <div className="section-label">01 / ABOUT</div>
+          <div className="about-grid">
+            <h2>Technical curiosity.<br /><span>Practical outcomes.</span></h2>
+            <div className="about-copy">
+              <p>I’m developing my skills at the intersection of software engineering, machine learning, and data analytics. I like understanding how a system works end to end—from preparing data and evaluating a model to building an interface around it.</p>
+              <p>I value clear thinking, steady iteration, and honest evaluation. I’m looking for opportunities to contribute, learn from experienced teams, and build digital tools that solve real problems.</p>
+              <a className="inline-link" href={profile.github} target="_blank" rel="noreferrer">Explore my GitHub <ArrowRight size={16} /></a>
+            </div>
+          </div>
+          <div className="principles-grid">
+            <article><span>01</span><h3>Build with purpose</h3><p>Start with the problem and make the solution useful.</p></article>
+            <article><span>02</span><h3>Measure the result</h3><p>Use evaluation and feedback to understand what works.</p></article>
+            <article><span>03</span><h3>Keep learning</h3><p>Improve through practice, experimentation, and collaboration.</p></article>
           </div>
         </section>
 
-        <motion.section id="about" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.55 }} className="border-t border-white/10 py-20">
-          <div className="section-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-3 py-1.5 text-sm font-medium text-violet-200">
-                <Sparkles size={16} />
-                About me
-              </div>
-              <h2 className="text-3xl font-bold text-white md:text-4xl">Engineer with a passion for AI, data, and practical innovation.</h2>
-            </div>
-
-            <div className="space-y-6 text-slate-300">
-              <p>
-                I enjoy solving real-world problems through software engineering, intelligent systems, and strong product thinking. My work sits at the intersection of data science, AI experimentation, and clean application architecture.
-              </p>
-              <p>
-                From prompt engineering and LLM evaluation to cloud infrastructure and analytics, I bring a balanced approach: technical depth, business awareness, and a strong focus on quality, clarity, and reliability.
-              </p>
-            </div>
+        <section className="section-wrap section-block projects-section" id="projects">
+          <div className="section-heading">
+            <div><div className="section-label">02 / SELECTED WORK</div><h2>Projects with a purpose.</h2></div>
+            <p>A selection of applications and machine-learning experiments I’ve worked on.</p>
           </div>
-        </motion.section>
+          <div className="projects-grid">
+            {projects.map((project, index) => (
+              <motion.article
+                className={`project-card ${project.featured ? 'project-featured' : ''}`}
+                key={project.number}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+              >
+                <div className="project-card-head">
+                  <span className="project-number">{project.number}</span>
+                  <span className="project-status">{project.status}</span>
+                </div>
+                <p className="project-category">{project.category}</p>
+                <h3>{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+                <div className="tag-list">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                <a className="project-link" href={project.href} target="_blank" rel="noreferrer">View project <ExternalLink size={15} /></a>
+              </motion.article>
+            ))}
+          </div>
+          <p className="projects-note">Some work is still in progress. More code is available on my <a href={profile.github} target="_blank" rel="noreferrer">GitHub profile</a>.</p>
+        </section>
 
-        <section id="about-details" className="py-8">
-          <div className="section-shell grid gap-6 lg:grid-cols-4">
-            {[
-              { icon: BriefcaseBusiness, label: 'Focus', value: 'AI systems' },
-              { icon: BrainCircuit, label: 'Strength', value: 'LLM evaluation' },
-              { icon: Database, label: 'Approach', value: 'Data-driven' },
-              { icon: Code2, label: 'Style', value: 'Clean engineering' },
-            ].map(({ icon: Icon, label, value }) => (
-              <div key={label} className="glass-panel rounded-3xl p-5">
-                <Icon className="mb-4 text-blue-400" size={24} />
-                <div className="text-sm uppercase tracking-[0.14em] text-slate-400">{label}</div>
-                <div className="mt-2 text-xl font-semibold text-white">{value}</div>
-              </div>
+        <section className="section-wrap section-block skills-section" id="skills">
+          <div className="section-label">03 / TOOLKIT</div>
+          <div className="section-heading"><h2>Tools I’m learning and using.</h2><p>My toolkit grows through coursework, projects, and hands-on practice.</p></div>
+          <div className="skills-grid">
+            {skillGroups.map((group, index) => (
+              <motion.article className="skill-card" key={group.title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
+                <div className="skill-card-index">0{index + 1}</div>
+                <h3>{group.title}</h3>
+                <div className="tag-list">{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+              </motion.article>
             ))}
           </div>
         </section>
 
-        <section id="education" className="py-20">
-          <div className="section-shell">
-            <div className="mb-10 flex items-end justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Education</p>
-                <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Background & learning journey</h2>
+        <section className="section-wrap section-block learning-section" id="learning">
+          <div className="section-label">04 / LEARNING JOURNEY</div>
+          <div className="section-heading"><h2>Learning by doing.</h2><p>Education and training that shape how I approach technical problems.</p></div>
+          <div className="learning-list">
+            {learning.map((item, index) => (
+              <article className="learning-item" key={item.title}>
+                <span className="learning-index">0{index + 1}</span>
+                <div><h3>{item.title}</h3><p className="learning-place">{item.place}</p></div>
+                <p className="learning-detail">{item.detail}</p>
+                <Check className="learning-check" size={18} />
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="contact-section" id="contact">
+          <div className="section-wrap contact-grid">
+            <div className="contact-copy">
+              <div className="section-label">05 / CONTACT</div>
+              <h2>Have a good problem to solve?</h2>
+              <p>I’m happy to connect about software engineering, AI and data projects, internships, and collaboration opportunities.</p>
+              <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email} <ArrowRight size={17} /></a>
+              <div className="contact-socials">
+                <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
+                <a href={profile.whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17} /> WhatsApp</a>
               </div>
             </div>
-
-            <div className="space-y-5">
-              {education.map((entry, index) => (
-                <motion.div
-                  key={entry.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="glass-panel rounded-3xl p-6"
-                >
-                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                    <h3 className="text-xl font-semibold text-white">{entry.title}</h3>
-                    <span className="inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-blue-200">
-                      {entry.meta}
-                    </span>
-                  </div>
-                  <p className="mt-3 max-w-3xl text-slate-300">{entry.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" className="py-20">
-          <div className="section-shell">
-            <div className="mb-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Skills</p>
-              <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Tools I use to turn ideas into products</h2>
-            </div>
-
-            <div className="space-y-8">
-              {Object.entries(skills).map(([title, items], index) => (
-                <motion.div
-                  key={title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                >
-                  <h3 className="mb-4 text-lg font-semibold text-slate-200">{title}</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {items.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-blue-400 hover:text-blue-200"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" className="py-20">
-          <div className="section-shell">
-            <div className="mb-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Portfolio</p>
-              <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Featured projects & experiments</h2>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {projectsData.map((project, index) => (
-                <motion.article
-                  key={project.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.06 }}
-                  className="group overflow-hidden rounded-[1.8rem] border border-white/10 bg-slate-900/80 shadow-[0_25px_45px_rgba(15,23,42,0.28)] transition hover:-translate-y-1 hover:border-blue-500/40"
-                >
-                  <div className={`h-36 bg-gradient-to-br ${project.accent} p-5`}>
-                    <div className="flex h-full items-end justify-between">
-                      <div className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-white/90">
-                        Project
-                      </div>
-                      <span className="rounded-full bg-slate-950/25 p-2 text-white">
-                        <ExternalLink size={14} />
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 p-5">
-                    <div>
-                      <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-300">{project.desc}</p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <span key={tech} className="rounded-full border border-slate-700 bg-slate-950/70 px-2.5 py-1 text-[11px] uppercase tracking-[0.08em] text-slate-300">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <a href={project.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-300 transition group-hover:text-blue-200">
-                      View repository <ArrowRight size={16} />
-                    </a>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-10">
-          <div className="section-shell">
-            <div className="glass-panel flex items-center justify-center gap-3 rounded-[2rem] px-6 py-8 text-center text-lg text-slate-200 md:text-2xl">
-              <Quote size={30} className="text-blue-400" />
-              <span>{quotes[quoteIndex]}</span>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="py-20">
-          <div className="section-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Contact</p>
-              <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Let&apos;s build something impactful together.</h2>
-              <p className="mt-4 max-w-xl text-slate-300">
-                I&apos;m open to AI-driven product work, engineering opportunities, collaborations, and impactful ideas that blend software, data, and smart automation.
-              </p>
-
-              <div className="mt-8 space-y-4 text-slate-200">
-                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} className="flex items-center gap-3 transition hover:text-blue-300">
-                  <Phone size={18} className="text-blue-400" />
-                  {profile.phone}
-                </a>
-                <a href={`mailto:${profile.email}`} className="flex items-center gap-3 transition hover:text-blue-300">
-                  <Mail size={18} className="text-blue-400" />
-                  {profile.email}
-                </a>
-                <a href={profile.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-3 transition hover:text-blue-300">
-                  <MessageCircle size={18} className="text-emerald-400" />
-                  WhatsApp: +254 746 728 328
-                </a>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 transition hover:text-blue-300">
-                  <Globe size={18} className="text-blue-400" />
-                  linkedin.com/in/weddy-nkatha-a84740358
-                </a>
-                <a href={profile.github} target="_blank" rel="noreferrer" className="flex items-center gap-3 transition hover:text-blue-300">
-                  <Globe size={18} className="text-blue-400" />
-                  github.com/Weddy93
-                </a>
-                <div className="flex items-center gap-3 text-slate-200">
-                  <MapPin size={18} className="text-blue-400" />
-                  {profile.location}
-                </div>
-              </div>
-            </div>
-
-            <div className="glass-panel rounded-[2rem] p-6 md:p-8">
-              <h3 className="mb-6 text-2xl font-semibold text-white">Send a message</h3>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">Your name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Jane Doe"
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-blue-400 focus:outline-none"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">Email address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-blue-400 focus:outline-none"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">Message</label>
-                  <textarea
-                    rows="5"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your idea, project, or collaboration..."
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-blue-400 focus:outline-none"
-                    required
-                  />
-                </div>
-
-                <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-500 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:bg-blue-400">
-                  Send Message <ArrowRight size={18} />
-                </button>
-
-                {feedback && (
-                  <div className={`rounded-2xl border px-4 py-3 text-sm ${feedback.includes('Thanks') ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-200' : 'border-rose-500/30 bg-rose-500/10 text-rose-200'}`}>
-                    {feedback}
-                  </div>
-                )}
-              </form>
-            </div>
+            <form className="contact-form" onSubmit={submitMessage}>
+              <label htmlFor="contact-name">Your name</label>
+              <input id="contact-name" name="name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Name" required />
+              <label htmlFor="contact-email">Your email</label>
+              <input id="contact-email" name="email" type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="you@example.com" required />
+              <label htmlFor="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="4" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} placeholder="What would you like to work on?" required />
+              <button className="button button-primary form-button" type="submit">Prepare email <ArrowRight size={17} /></button>
+              {feedback && <p className="form-feedback" role="status">{feedback}</p>}
+              <p className="form-hint">This form opens your email app; it does not send messages directly from this website.</p>
+            </form>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-white/10 py-8">
-        <div className="section-shell flex flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="text-sm text-slate-400">© 2025 {profile.name} • Software Engineer | Data Scientist | AI Enthusiast</div>
-          <div className="flex items-center gap-3">
-            {socialLinks.map(({ href, label, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                aria-label={label}
-                className="rounded-full border border-slate-700 bg-slate-900/80 p-2.5 text-slate-300 transition hover:border-blue-400 hover:text-blue-200"
-              >
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
-        </div>
+      <footer className="site-footer section-wrap">
+        <a className="wordmark" href="#home">WN<span>.</span></a>
+        <p>Designed with care. Built to keep learning.</p>
+        <a href="#home" className="back-top">Back to top ↑</a>
+        <span className="footer-copy">© {new Date().getFullYear()} {profile.name}</span>
       </footer>
     </div>
   )
