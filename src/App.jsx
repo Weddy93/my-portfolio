@@ -83,47 +83,42 @@ const learning = [
     place: 'Power Learn Project Africa',
     detail: 'Practical learning in AI/ML workflows and applied machine learning.',
   },
-  {
-    title: 'AWS Cloud Infrastructure',
-    place: 'ICT Kenya',
-    detail: 'Foundational cloud infrastructure and deployment concepts.',
-  },
-  {
-    title: 'Data Analytics & Artificial Intelligence',
-    place: 'ICT Kenya',
-    detail: 'Training in analytics, reporting, and applied AI.',
-  },
 ]
+const certifications = [
+  {
+    title: "AI AND MACHINE LEARNING",
+    issuer: "Power Learn Project Africa",
+    year: "2025",
+    image: "/certs/ai-machine-learning.svg",
+    url: "https://academy.powerlearnprojectafrica.org/certificates?scholarship=76a52676-d442-41af-b6bd-69e1c3efca2b&certId=080260cc-1c78-4e64-a4ae-f40d0cbd66f8",
+  },
+  {
+    title: "DATA ANALYTICS",
+    issuer: "ICT Authority — Smart Academy",
+    year: "2026",
+    image: "/certs/data-analytics.svg",
+    url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1773654922-6084-38451",
+  },
+  {
+    title: "CLOUD INFRASTRUCTURE",
+    issuer: "ICT Authority — Smart Academy",
+    year: "2026",
+    image: "/certs/cloud-infrastructure.svg",
+    url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1772904543-5776-38451",
+  },
+];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [feedback, setFeedback] = useState('')
 
   const navItems = [
     ['About', '#about'],
     ['Projects', '#projects'],
     ['Skills', '#skills'],
+    ['Certifications', '#certifications'],
     ['Learning', '#learning'],
     ['Contact', '#contact'],
   ]
-
-  function submitMessage(event) {
-    event.preventDefault()
-    const name = form.name.trim()
-    const email = form.email.trim()
-    const message = form.message.trim()
-
-    if (!name || !email || !message) {
-      setFeedback('Please complete all three fields.')
-      return
-    }
-
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`)
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
-    setFeedback('Your email application should open with your message ready. You will still need to send it there.')
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-  }
 
   return (
     <div className="site-shell">
@@ -186,9 +181,9 @@ function App() {
               <div className="code-window">
                 <div className="code-dots"><i /><i /><i /></div>
                 <p><span className="code-muted">01</span> <span className="code-purple">const</span> focus = [</p>
-                <p><span className="code-muted">02</span> &nbsp; <span className="code-green">'software'</span>,</p>
-                <p><span className="code-muted">03</span> &nbsp; <span className="code-green">'machine learning'</span>,</p>
-                <p><span className="code-muted">04</span> &nbsp; <span className="code-green">'data'</span></p>
+                <p><span className="code-muted">02</span> &nbsp; <span className="code-blue">'software'</span>,</p>
+                <p><span className="code-muted">03</span> &nbsp; <span className="code-blue">'machine learning'</span>,</p>
+                <p><span className="code-muted">04</span> &nbsp; <span className="code-blue">'data'</span></p>
                 <p><span className="code-muted">05</span> ]</p>
                 <div className="code-divider" />
                 <p><span className="code-muted">06</span> <span className="code-purple">while</span> (curious) {'{'}</p>
@@ -271,8 +266,25 @@ function App() {
           </div>
         </section>
 
+        <section className="section-wrap section-block certifications-section" id="certifications">
+          <div className="section-label">04 / CERTIFICATIONS</div>
+          <div className="section-heading"><h2>Certifications.</h2><p>Credentials from training programs I’ve completed.</p></div>
+          <div className="certifications-grid">
+            {certifications.map((cert) => (
+              <article className="cert-card" key={cert.title}>
+                <img className="cert-image" src={cert.image} alt={`Certificate — ${cert.title}`} loading="lazy" />
+                <div>
+                  <h3>{cert.title}</h3>
+                  <div className="cert-meta"><span>{cert.issuer}</span><span>{cert.year}</span></div>
+                </div>
+                <a className="cert-link" href={cert.url} target="_blank" rel="noreferrer">View certificate <ExternalLink size={14} /></a>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section-wrap section-block learning-section" id="learning">
-          <div className="section-label">04 / LEARNING JOURNEY</div>
+          <div className="section-label">05 / LEARNING JOURNEY</div>
           <div className="section-heading"><h2>Learning by doing.</h2><p>Education and training that shape how I approach technical problems.</p></div>
           <div className="learning-list">
             {learning.map((item, index) => (
@@ -289,26 +301,15 @@ function App() {
         <section className="contact-section" id="contact">
           <div className="section-wrap contact-grid">
             <div className="contact-copy">
-              <div className="section-label">05 / CONTACT</div>
-              <h2>Have a good problem to solve?</h2>
+              <div className="section-label">06 / CONTACTS</div>
+              <h2>Let’s connect.</h2>
               <p>I’m happy to connect about software engineering, AI and data projects, internships, and collaboration opportunities.</p>
-              <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email} <ArrowRight size={17} /></a>
+              <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
               <div className="contact-socials">
                 <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
                 <a href={profile.whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17} /> WhatsApp</a>
               </div>
             </div>
-            <form className="contact-form" onSubmit={submitMessage}>
-              <label htmlFor="contact-name">Your name</label>
-              <input id="contact-name" name="name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Name" required />
-              <label htmlFor="contact-email">Your email</label>
-              <input id="contact-email" name="email" type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="you@example.com" required />
-              <label htmlFor="contact-message">Message</label>
-              <textarea id="contact-message" name="message" rows="4" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} placeholder="What would you like to work on?" required />
-              <button className="button button-primary form-button" type="submit">Prepare email <ArrowRight size={17} /></button>
-              {feedback && <p className="form-feedback" role="status">{feedback}</p>}
-              <p className="form-hint">This form opens your email app; it does not send messages directly from this website.</p>
-            </form>
           </div>
         </section>
       </main>

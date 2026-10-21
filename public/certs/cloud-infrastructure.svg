@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="frameGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#93c5fd"/>
+    </linearGradient>
+    <radialGradient id="sealGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#bfdbfe"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="#ffffff"/>
+  <rect x="22" y="22" width="756" height="556" fill="none" stroke="url(#frameGrad)" stroke-width="10" rx="12"/>
+  <rect x="38" y="38" width="724" height="524" fill="none" stroke="#cbd5e1" stroke-width="1.5" rx="6"/>
+  <text x="400" y="140" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="bold" fill="#0f172a" text-anchor="middle" letter-spacing="4">CLOUD INFRASTRUCTURE</text>
+  <text x="400" y="185" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="middle" letter-spacing="2">Certificate of Completion</text>
+  <line x1="280" y1="230" x2="520" y2="230" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="300" y="320" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#334155">This certifies that</text>
+  <text x="400" y="370" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="bold" fill="#0f172a" text-anchor="middle">Weddy Nkatha</text>
+  <text x="300" y="420" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#334155">has successfully completed the training program in</text>
+  <text x="400" y="470" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#2563eb" text-anchor="middle">Cloud Infrastructure</text>
+  <text x="300" y="520" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#475569">Issued by ICT Authority — Smart Academy &bull; 2026</text>
+  <circle cx="180" cy="500" r="55" fill="url(#sealGrad)" stroke="#1e40af" stroke-width="3"/>
+  <circle cx="180" cy="500" r="40" fill="none" stroke="#1e40af" stroke-width="2" stroke-dasharray="10 6"/>
+  <text x="180" y="505" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">ICTA SEAL</text>
+</svg>
