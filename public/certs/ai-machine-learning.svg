@@ -19,7 +19,7 @@
   <text x="400" y="370" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="bold" fill="#0f172a" text-anchor="middle">Weddy Nkatha</text>
   <text x="300" y="420" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#334155">has successfully completed the training program in</text>
   <text x="400" y="470" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#2563eb" text-anchor="middle">Artificial Intelligence and Machine Learning</text>
-  <text x="300" y="520" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#475569">Issued by Power Learn Project Africa &bull; 2025</text>
+  <text x="300" y="520" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#475569">Issued by Power Learn Project Africa &#8226; 2025</text>
   <circle cx="180" cy="500" r="55" fill="url(#sealGrad)" stroke="#1e40af" stroke-width="3"/>
   <circle cx="180" cy="500" r="40" fill="none" stroke="#1e40af" stroke-width="2" stroke-dasharray="10 6"/>
   <text x="180" y="505" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">PLPA SEAL</text>
