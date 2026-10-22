@@ -1,12 +1,12 @@
+
 {
   "name": "portfolio",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5173",
-    "build": "npx vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 5173"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "engines": {
     "node": ">=18.x"
@@ -24,3 +24,4 @@
     "vite": "^5.4.10"
   }
 }
+
