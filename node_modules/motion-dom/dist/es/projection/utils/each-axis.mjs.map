@@ -1,1 +1,0 @@
-{"version":3,"file":"each-axis.mjs","sources":["../../../../src/projection/utils/each-axis.ts"],"sourcesContent":["export function eachAxis<T>(callback: (axis: \"x\" | \"y\") => T): T[] {\n    return [callback(\"x\"), callback(\"y\")]\n}\n"],"names":[],"mappings":"AAAM,SAAU,QAAQ,CAAI,QAAgC,EAAA;IACxD,OAAO,CAAC,QAAQ,CAAC,GAAG,CAAC,EAAE,QAAQ,CAAC,GAAG,CAAC,CAAC;AACzC;;;;"}
