@@ -122,6 +122,20 @@ h1 span, .about-grid h2 span { color: var(--accent); }
 .skill-card h3 { font-size: 16px; margin: 25px 0 18px; }
 .skill-card .tag-list { gap: 8px; }
 .skill-card .tag-list span { font-family: 'DM Sans', sans-serif; font-size: 11px; padding: 8px 10px; }
+.certifications-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.cert-card { min-width: 0; display: flex; flex-direction: column; gap: 15px; padding: 14px; background: var(--panel); border: 1px solid var(--line); }
+.cert-preview { width: 100%; height: 150px; border: 1px solid var(--line); background: #f8f9f6; }
+.cert-verification-preview { display: block; }
+.cert-file-preview { display: block; }
+.cert-details-preview { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 16px; color: #22271f; }
+.cert-details-preview strong { font-family: var(--display); font-size: 16px; line-height: 1.25; }
+.cert-details-preview > span:not(.cert-preview-label) { font-size: 10px; line-height: 1.4; color: #56604f; }
+.cert-details-preview .cert-preview-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: #596d39; }
+.cert-details-preview .cert-preview-note { padding-top: 4px; border-top: 1px solid #d8ddd2; }
+.cert-card h3 { margin: 0 0 8px; font-family: var(--display); font-size: 14px; letter-spacing: -.02em; }
+.cert-meta { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.cert-link { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 4px; color: var(--accent); font-size: 11px; font-weight: 700; }
+.cert-link:hover { color: #d4ff7b; }
 .learning-list { border-top: 1px solid var(--line); }
 .learning-item { display: grid; grid-template-columns: 50px 1fr 1fr 20px; align-items: center; gap: 22px; padding: 25px 0; border-bottom: 1px solid var(--line); }
 .learning-index { color: var(--accent); font-family: var(--mono); font-size: 11px; }
@@ -155,6 +169,8 @@ h1 span, .about-grid h2 span { color: var(--accent); }
   .hero-art { transform: scale(.9); }
   .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-card:last-child { grid-column: 1 / -1; min-height: auto; }
+  .certifications-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cert-card:last-child { grid-column: 1 / -1; }
   .contact-grid { gap: 45px; }
   .navigation { gap: 18px; }
 }
@@ -187,6 +203,8 @@ h1 span, .about-grid h2 span { color: var(--accent); }
   .section-heading { align-items: start; flex-direction: column; gap: 14px; }
   .section-heading > p { margin-bottom: 0; }
   .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+  .certifications-grid { grid-template-columns: 1fr; }
+  .cert-card:last-child { grid-column: auto; }
   .project-card, .project-card:last-child { min-height: auto; grid-column: auto; }
   .project-card-head { margin-bottom: 26px; }
   .learning-item { grid-template-columns: 30px 1fr 20px; gap: 12px; }

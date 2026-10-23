@@ -146,22 +146,25 @@ const certifications = [
     title: "AI AND MACHINE LEARNING",
     issuer: "Power Learn Project Africa",
     year: "2025",
-    image: "/certs/ai-machine-learning.svg",
+    preview: "details",
+    image: "/certs/plp-ai-machine-learning.pdf",
     url: "https://academy.powerlearnprojectafrica.org/certificates?scholarship=76a52676-d442-41af-b6bd-69e1c3efca2b&certId=080260cc-1c78-4e64-a4ae-f40d0cbd66f8",
   },
   {
     title: "DATA ANALYTICS",
+    image: "/certs/ict-data-analytics.pdf",
     issuer: "ICT Authority — Smart Academy",
     year: "2026",
-    image: "/certs/data-analytics.svg",
+    preview: "verification",
     url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1773654922-6084-38451",
   },
   {
     title: "CLOUD INFRASTRUCTURE",
+    image: "/certs/ict-cloud-infrastructure.pdf",
     issuer: "ICT Authority — Smart Academy",
     year: "2026",
-    image: "/certs/cloud-infrastructure.svg",
-    url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1772904543-5776-38451",
+    preview: "verification",
+    url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1773654922-6084-38451",
   },
 ];
 
@@ -363,7 +366,29 @@ function App() {
           <div className="certifications-grid">
             {certifications.map((cert) => (
               <article className="cert-card" key={cert.title}>
-                <img className="cert-image" src={cert.image} alt={`Certificate — ${cert.title}`} loading="lazy" />
+                {cert.image ? (
+                  <iframe
+                    className="cert-preview cert-file-preview"
+                    src={cert.image}
+                    title={`Certificate preview: ${cert.title}`}
+                    loading="lazy"
+                  />
+                ) : cert.preview === "verification" ? (
+                  <iframe
+                    className="cert-preview cert-verification-preview"
+                    src={cert.url}
+                    title={`Official certificate verification preview — ${cert.title}`}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="cert-preview cert-details-preview" aria-label={`Certificate details for ${cert.title}`}>
+                    <span className="cert-preview-label">Certificate preview</span>
+                    <strong>{cert.title}</strong>
+                    <span>Awarded to {profile.name}</span>
+                    <span>{cert.issuer} · {cert.year}</span>
+                    <span className="cert-preview-note">Open the issuer’s portal to view the certificate</span>
+                  </div>
+                )}
                 <div>
                   <h3>{cert.title}</h3>
                   <div className="cert-meta"><span>{cert.issuer}</span><span>{cert.year}</span></div>
