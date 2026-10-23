@@ -372,6 +372,7 @@ function App() {
                     src={cert.image}
                     title={`Certificate preview: ${cert.title}`}
                     loading="lazy"
+                    scrolling="no"
                   />
                 ) : cert.preview === "verification" ? (
                   <iframe
@@ -379,6 +380,7 @@ function App() {
                     src={cert.url}
                     title={`Official certificate verification preview — ${cert.title}`}
                     loading="lazy"
+                    scrolling="no"
                   />
                 ) : (
                   <div className="cert-preview cert-details-preview" aria-label={`Certificate details for ${cert.title}`}>
