@@ -4,14 +4,14 @@
 :root {
   font-family: 'DM Sans', sans-serif;
   color: #f2f3ec;
-  background:cyan;
+  background:rgb(28, 28, 41, 0.449);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
-  --bg: cyan;
+  --bg: rgba(28, 28, 41, 0.449);
   --panel: #171a16;
   --line: rgba(232, 239, 219, .12);
   --muted: #a5ab9d;
