@@ -166,6 +166,14 @@ const certifications = [
     preview: "verification",
     url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1773654922-6084-38451",
   },
+  {
+    title: "ICT CYBER SECURITY",
+    image: "/certs/ict-cyber-security.pdf",
+    issuer: "ICT Authority — Smart Academy",
+    year: "2026",
+    preview: "verification",
+    url: "https://training.smartacademy.go.ke/certificate-verification/?certificate_id=ICTA-1773654922-6084-38451",
+  },
 ];
 
 function App() {
