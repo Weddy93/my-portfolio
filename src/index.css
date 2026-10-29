@@ -105,7 +105,7 @@ h1 span, .about-grid h2 span { color: var(--accent); }
 .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
 .project-card { display: flex; flex-direction: column; min-height: 355px; padding: 23px; background: var(--panel); border: 1px solid var(--line); transition: transform .2s, border-color .2s, background .2s; }
 .project-card:hover { transform: translateY(-5px); border-color: rgba(198,243,106,.38); background: #1b2018; }
-.project-featured { background: linear-gradient(145deg, rgba(198,243,106,.07), transparent 55%), var(--panel); }
+.project-featured { background: linear-gradient(145deg, rgba(76, 111, 5, 0.662), transparent 55%), var(--panel); }
 .project-card-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 35px; }
 .project-number { font-family: var(--mono); font-size: 12px; color: var(--accent); }
 .project-status { font-size: 9px; color: #b2baaa; border: 1px solid var(--line); padding: 6px 8px; }
