@@ -32,7 +32,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .site-shell { position: relative; z-index: 1; overflow: hidden; }
 .section-wrap { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }
 .site-header { width: min(1320px, calc(100% - 64px)); height: 82px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); position: relative; z-index: 10; }
-.wordmark { font-family: var(--display); font-weight: 800; letter-spacing: -.08em; font-size: 25px; }
+.wordmark { font-family: var(--display); font-weight: 800; letter-spacing: -.08em; font-size: 25px; display: inline-flex; align-items: center; gap: 8px; }
+.wordmark-icon { color: var(--accent); flex-shrink: 0; }
 .wordmark span { color: var(--accent); }
 .navigation { display: flex; align-items: center; gap: 31px; }
 .navigation > a:not(.nav-cta) { font-size: 13px; color: #c1c5b9; transition: color .2s; }

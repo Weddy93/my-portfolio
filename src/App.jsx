@@ -12,6 +12,7 @@ import {
   Mail,
   Menu,
   Phone,
+  Sparkles,
   X,
 } from 'lucide-react'
 
@@ -192,7 +193,7 @@ function App() {
   return (
     <div className="site-shell">
       <header className="site-header">
-        <a className="wordmark" href="#home" aria-label="Weddy home">WN<span>.</span></a>
+        <a className="wordmark" href="#home" aria-label="Weddy home"><Sparkles size={20} aria-hidden="true" className="wordmark-icon" /> WN<span>.</span></a>
         <button
           className="menu-toggle"
           type="button"
