@@ -236,3 +236,12 @@ h1 span, .about-grid h2 span { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+.glowing-grid { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.project-card { cursor: pointer; }
+.project-modal-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, 0.62); backdrop-filter: blur(6px); }
+.project-modal-layer { position: fixed; inset: 0; z-index: 61; display: grid; place-items: center; padding: 24px; pointer-events: none; }
+.project-modal-card { pointer-events: auto; width: min(680px, 100%); max-height: 86vh; overflow: auto; padding: 28px; background: var(--panel); border: 1px solid rgba(198,243,106,.35); box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+.project-modal-close { position: absolute; top: 14px; right: 14px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--line); background: rgba(0,0,0,.25); color: var(--text); cursor: pointer; }
+.project-modal-close:hover { border-color: var(--accent); color: var(--accent); }
+.project-modal-card { position: relative; }

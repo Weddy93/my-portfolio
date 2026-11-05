@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import GlowingGrid from './GlowingGrid.jsx'
 import {
   ArrowDownRight,
   ArrowRight,
@@ -178,6 +179,12 @@ const certifications = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
+
+  useEffect(() => {
+    document.body.style.overflow = selectedProject ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [selectedProject])
 
   const navItems = [
     ['About', '#about'],
@@ -191,6 +198,7 @@ function App() {
 
   return (
     <div className="site-shell">
+      <GlowingGrid />
       <header className="site-header">
         <a className="wordmark" href="#home" aria-label="Weddy home">WN<span>.</span></a>
         <button
@@ -315,14 +323,22 @@ function App() {
             <p>A closer look at the real problems, tools, and learnings behind work on my GitHub.</p>
           </div>
           <div className="projects-grid">
-            {projects.map((project, index) => (
+            {projects.map((project, index) => {
+              if (selectedProject && selectedProject.number === project.number) return null
+              return (
               <motion.article
+                layoutId={`project-card-${project.number}`}
                 className={`project-card ${project.featured ? 'project-featured' : ''}`}
                 key={project.number}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                transition={{ duration: 0.4, delay: index * 0.08, layout: { type: 'spring', stiffness: 320, damping: 30 } }}
+                onClick={() => setSelectedProject(project)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedProject(project) }}
+                whileHover={{ y: -5 }}
               >
                 <div className="project-card-head">
                   <span className="project-number">{project.number}</span>
@@ -333,9 +349,10 @@ function App() {
                 <p className="project-description">{project.description}</p>
                 <p className="project-detail">{project.detail}</p>
                 <div className="tag-list">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <a className="project-link" href={project.href} target="_blank" rel="noreferrer">View project <ExternalLink size={15} /></a>
+                <span className="project-link">View details <ExternalLink size={15} /></span>
               </motion.article>
-            ))}
+              )
+            })}
           </div>
           <p className="projects-note">Healthy Beans is an ongoing experiment; results are specific to its current dataset and setup. Explore more code and learning projects on my <a href={profile.github} target="_blank" rel="noreferrer">GitHub profile</a>.</p>
         </section>
@@ -440,6 +457,41 @@ function App() {
           </div>
         </section>
       </main>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <>
+            <motion.div
+              className="project-modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+            />
+            <div className="project-modal-layer">
+              <motion.article
+                layoutId={`project-card-${selectedProject.number}`}
+                className={`project-card project-modal-card ${selectedProject.featured ? 'project-featured' : ''}`}
+                transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+              >
+                <button className="project-modal-close" type="button" onClick={() => setSelectedProject(null)} aria-label="Close details">
+                  <X size={18} />
+                </button>
+                <div className="project-card-head">
+                  <span className="project-number">{selectedProject.number}</span>
+                  <span className="project-status">{selectedProject.status}</span>
+                </div>
+                <p className="project-category">{selectedProject.category}</p>
+                <h3>{selectedProject.title}</h3>
+                <p className="project-description">{selectedProject.description}</p>
+                <p className="project-detail">{selectedProject.detail}</p>
+                <div className="tag-list">{selectedProject.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                <a className="project-link" href={selectedProject.href} target="_blank" rel="noreferrer">View project <ExternalLink size={15} /></a>
+              </motion.article>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
 
       <footer className="site-footer section-wrap">
         <a className="wordmark" href="#home">WN<span>.</span></a>
