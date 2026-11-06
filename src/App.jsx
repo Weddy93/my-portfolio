@@ -10,6 +10,7 @@ import {
   Code2,
   Database,
   ExternalLink,
+  FolderGit2,
   Mail,
   Menu,
   Phone,
@@ -340,16 +341,14 @@ function App() {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedProject(project) }}
                 whileHover={{ y: -5 }}
               >
-                <div className="project-card-head">
-                  <span className="project-number">{project.number}</span>
-                  <span className="project-status">{project.status}</span>
+                <div className="project-card-top">
+                  <h3 className="project-card-title">{project.title}</h3>
+                  <FolderGit2 className="project-repo-icon" size={18} aria-hidden="true" />
                 </div>
-                <p className="project-category">{project.category}</p>
-                <h3>{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <p className="project-detail">{project.detail}</p>
-                <div className="tag-list">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <span className="project-link">View details <ExternalLink size={15} /></span>
+                <p className="project-summary">{project.description}</p>
+                <div className="project-tags">
+                  {project.stack.map((tag) => <span key={tag} className="project-tag">{tag}</span>)}
+                </div>
               </motion.article>
               )
             })}
@@ -485,7 +484,7 @@ function App() {
                 <h3>{selectedProject.title}</h3>
                 <p className="project-description">{selectedProject.description}</p>
                 <p className="project-detail">{selectedProject.detail}</p>
-                <div className="tag-list">{selectedProject.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                <div className="project-tags">{selectedProject.stack.map((tag) => <span key={tag} className="project-tag">{tag}</span>)}</div>
                 <a className="project-link" href={selectedProject.href} target="_blank" rel="noreferrer">View project <ExternalLink size={15} /></a>
               </motion.article>
             </div>
