@@ -393,7 +393,14 @@ function App() {
                 {cert.image ? (
                   <iframe
                     className="cert-preview cert-file-preview"
-                    src={cert.image}
+                    src={
+                      window.location.hostname === 'localhost' ||
+                      window.location.hostname === '127.0.0.1'
+                        ? cert.image
+                        : `https://docs.google.com/viewer?url=${encodeURIComponent(
+                            window.location.origin + cert.image
+                          )}&embedded=true`
+                    }
                     title={`Certificate preview: ${cert.title}`}
                     loading="lazy"
                     scrolling="no"

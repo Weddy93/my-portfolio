@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 
 :root {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   color: #f2f3ec;
   background:black;
   font-synthesis: none;
@@ -17,8 +17,8 @@
   --muted: #a5ab9d;
   --text: #f2f3ec;
   --accent:rgba(12, 232, 244, 0.56);
-  --mono: 'DM Mono', monospace;
-  --display: 'Manrope', sans-serif;
+  --mono: 'Geist Mono', monospace;
+  --display: 'Geist', sans-serif;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
@@ -74,7 +74,7 @@ h1 span, .about-grid h2 span { color: var(--accent); }
 .code-purple { color: #d2a8ff; }
 .code-green { color: #c6f36a; }
 .code-divider { height: 1px; background: var(--line); margin: 14px 0; }
-.art-card-bottom { justify-content: flex-start; gap: 10px; font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 0; color: #c7cdbd; }
+.art-card-bottom { justify-content: flex-start; gap: 10px; font-family: 'Geist', sans-serif; font-size: 11px; letter-spacing: 0; color: #c7cdbd; }
 .art-card-bottom svg { color: var(--accent); }
 .art-arrow { margin-left: auto; color: var(--accent); font-size: 17px; }
 .floating-note { position: absolute; display: flex; align-items: center; gap: 9px; padding: 12px 14px; background: #24291f; border: 1px solid var(--line); box-shadow: 0 12px 35px #0005; font-size: 11px; color: #d8ddcf; }
@@ -127,7 +127,7 @@ h1 span, .about-grid h2 span { color: var(--accent); }
 .skill-card { background: var(--panel); border: 1px solid var(--line); padding: 25px; }
 .skill-card h3 { font-size: 16px; margin: 25px 0 18px; }
 .skill-card .tag-list { gap: 8px; }
-.skill-card .tag-list span { font-family: 'DM Sans', sans-serif; font-size: 11px; padding: 8px 10px; }
+.skill-card .tag-list span { font-family: 'Geist', sans-serif; font-size: 11px; padding: 8px 10px; }
 .certifications-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .cert-card { min-width: 0; display: flex; flex-direction: column; gap: 15px; padding: 14px; background: var(--panel); border: 1px solid var(--line); }
 .cert-preview { width: 100%; height: 150px; border: 1px solid var(--line); background: #f8f9f6; }
@@ -138,14 +138,6 @@ h1 span, .about-grid h2 span { color: var(--accent); }
   height: 150px;
   border: 1px solid var(--line);
   background: #f8f9f6;
-  overflow: hidden !important;
-  transform: rotate(0deg) !important;
-  -webkit-transform: rotate(0deg) !important;
-  transform-origin: center;
-}
-.cert-file-preview:hover {
-  transform: rotate(0deg) scale(1.04) !important;
-  -webkit-transform: rotate(0deg) scale(1.04) !important;
 }
 .cert-details-preview { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 16px; color: #22271f; }
 .cert-details-preview strong { font-family: var(--display); font-size: 16px; line-height: 1.25; }
