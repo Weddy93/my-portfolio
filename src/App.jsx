@@ -38,6 +38,7 @@ const projects = [
       'Includes individual and batch prediction endpoints, confidence scoring, and personalized meal-planning features. Built as an educational project—not a substitute for professional medical advice.',
     stack: ['React', 'Flask', 'Python', 'scikit-learn', 'REST API'],
     href: 'https://github.com/Weddy93/health-check',
+    live: 'https://health-check-ruby.vercel.app',
     status: 'Web app · ML API',
     featured: true,
   },
@@ -343,7 +344,21 @@ function App() {
               >
                 <div className="project-card-top">
                   <h3 className="project-card-title">{project.title}</h3>
-                  <FolderGit2 className="project-repo-icon" size={18} aria-hidden="true" />
+                  <div className="project-card-actions">
+                    {project.live && (
+                      <a
+                        className="project-live-link"
+                        href={project.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`Open live site for ${project.title}`}
+                      >
+                        Live <ExternalLink size={14} />
+                      </a>
+                    )}
+                    <FolderGit2 className="project-repo-icon" size={18} aria-hidden="true" />
+                  </div>
                 </div>
                 <p className="project-summary">{project.description}</p>
                 <div className="project-tags">
@@ -397,12 +412,11 @@ function App() {
                       window.location.hostname === 'localhost' ||
                       window.location.hostname === '127.0.0.1'
                         ? cert.image
-                        : `https://docs.google.com/viewer?url=${encodeURIComponent(
+                        : `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(
                             window.location.origin + cert.image
-                          )}&embedded=true`
+                          )}`
                     }
                     title={`Certificate preview: ${cert.title}`}
-                    loading="lazy"
                     scrolling="no"
                   />
                 ) : cert.preview === "verification" ? (
@@ -492,7 +506,12 @@ function App() {
                 <p className="project-description">{selectedProject.description}</p>
                 <p className="project-detail">{selectedProject.detail}</p>
                 <div className="project-tags">{selectedProject.stack.map((tag) => <span key={tag} className="project-tag">{tag}</span>)}</div>
-                <a className="project-link" href={selectedProject.href} target="_blank" rel="noreferrer">View project <ExternalLink size={15} /></a>
+                <div className="project-links">
+                  <a className="project-link" href={selectedProject.href} target="_blank" rel="noreferrer">View project <ExternalLink size={15} /></a>
+                  {selectedProject.live && (
+                    <a className="project-link" href={selectedProject.live} target="_blank" rel="noreferrer">Live site <ExternalLink size={15} /></a>
+                  )}
+                </div>
               </motion.article>
             </div>
           </>
