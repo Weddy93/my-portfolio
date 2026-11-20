@@ -13,14 +13,13 @@ import {
   FolderGit2,
   Mail,
   Menu,
-  Phone,
   X,
 } from 'lucide-react'
 
 const profile = {
   name: 'Weddy Nkatha',
   email: 'gikundaweddy1@gmail.com',
-  phone: '+254 115 842 214',
+  whatsapp: '+254 115 842 214',
   github: 'https://github.com/Weddy93',
   linkedin: 'https://www.linkedin.com/in/weddy-nkatha-a84740358',
   location: 'Kenya',
@@ -257,7 +256,7 @@ function App() {
               <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer"><span className="linkedin-mark" aria-hidden="true">in</span> LinkedIn</a>
               <a href={`mailto:${profile.email}`}><Mail size={17} /> Email</a>
-              <a href={`tel:${profile.phone.replaceAll(' ', '')}`}><Phone size={16} /> Phone</a>
+              <a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><WhatsAppIcon size={16} /> {profile.whatsapp}</a>
             </div>
           </motion.div>
 
@@ -485,8 +484,7 @@ function App() {
               <div className="contact-socials">
                 <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
                 <a href={profile.linkedin} target="_blank" rel="noreferrer"><span className="linkedin-mark" aria-hidden="true">in</span> LinkedIn</a>
-                <a href={`tel:${profile.phone.replaceAll(' ', '')}`}><Phone size={16} /> {profile.phone}</a>
-                <a href={`https://wa.me/${profile.phone.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><WhatsAppIcon size={16} /> WhatsApp</a>
+                <a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><WhatsAppIcon size={16} /> {profile.whatsapp}</a>
               </div>
             </div>
           </div>
