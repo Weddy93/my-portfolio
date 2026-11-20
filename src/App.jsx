@@ -256,7 +256,7 @@ function App() {
               <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer"><span className="linkedin-mark" aria-hidden="true">in</span> LinkedIn</a>
               <a href={`mailto:${profile.email}`}><Mail size={17} /> Email</a>
-              <a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><WhatsAppIcon size={16} /> {profile.whatsapp}</a>
+              <a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon size={16} /></a>
             </div>
           </motion.div>
 
@@ -484,7 +484,7 @@ function App() {
               <div className="contact-socials">
                 <a href={profile.github} target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub</a>
                 <a href={profile.linkedin} target="_blank" rel="noreferrer"><span className="linkedin-mark" aria-hidden="true">in</span> LinkedIn</a>
-                <a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><WhatsAppIcon size={16} /> {profile.whatsapp}</a>
+                <a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon size={16} /></a>
               </div>
             </div>
           </div>
