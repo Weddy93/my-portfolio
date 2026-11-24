@@ -143,6 +143,15 @@ h1 span, .about-grid h2 span { color: var(--accent); }
   border: 1px solid var(--line);
   background: #f8f9f6;
 }
+.cert-rotated {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  width: 320px;
+  height: 320px;
+  max-width: none;
+  display: block;
+  margin-inline: auto;
+}
 .cert-details-preview { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 16px; color: #22271f; }
 .cert-details-preview strong { font-family: var(--display); font-size: 16px; line-height: 1.25; }
 .cert-details-preview > span:not(.cert-preview-label) { font-size: 10px; line-height: 1.4; color: #56604f; }

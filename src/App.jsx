@@ -150,6 +150,7 @@ const certifications = [
     year: "2025",
     preview: "details",
     image: "/certs/plp-ai-machine-learning.pdf",
+    rotate: true,
     url: "https://academy.powerlearnprojectafrica.org/certificates?scholarship=76a52676-d442-41af-b6bd-69e1c3efca2b&certId=080260cc-1c78-4e64-a4ae-f40d0cbd66f8",
   },
   {
@@ -420,7 +421,7 @@ function App() {
               <article className="cert-card" key={cert.title}>
                 {cert.image ? (
                   <iframe
-                    className="cert-preview cert-file-preview"
+                    className={`cert-preview cert-file-preview${cert.rotate ? ' cert-rotated' : ''}`}
                     src={
                       window.location.hostname === 'localhost' ||
                       window.location.hostname === '127.0.0.1'
